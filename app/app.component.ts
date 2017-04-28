@@ -18,16 +18,18 @@ import { Task } from './interfaces/task';
                                 <th></th>
                             </tr>
                             <tr *ngFor="let task of taskList; let i = index;" >
-                               <td>{{task.name}}</td>
-                               <td>{{task.content}}</td>
-                               <td>{{task.startDate}}</td>
-                               <td>{{task.endDate}}</td>
-                               <td>{{task.priority}}</td>
-                               <td>{{task.status}}</td>
-                               <td>
-                                <button (click)="removeTask(i)">Remove</button>
-                                <button (click)="editTask(i)">Edit</button>
-                               </td>                                
+                                <td>{{task.name}}</td>
+                                <td>{{task.content}}</td>
+                                <td>{{task.startDate}}</td>
+                                <td>{{task.endDate}}</td>
+                                <td>{{task.priority}}</td>
+                                <td>
+                                    <input type="checkbox" [(ngModel)] = "task.status">
+                                </td>
+                                <td>
+                                    <button (click)="removeTask(i)">Remove</button>
+                                    <button (click)="editTask(i)">Edit</button>
+                                </td>                                
                             </tr>
                         </tbody>
                     </table>
@@ -37,12 +39,12 @@ import { Task } from './interfaces/task';
                 </div>
                 <div *ngIf="showForm">
                     <div>
-                        <input type="text" [(ngModel)] = "buffer.name">
-                        <input type="text" [(ngModel)] = "buffer.content">
-                        <input type="number" [(ngModel)] = "buffer.startDate">
-                        <input type="number" [(ngModel)] = "buffer.endDate">
-                        <input type="number" [(ngModel)] = "buffer.priority">
-                        <input type="text" [(ngModel)] = "buffer.status">
+                        Name: <input type="text" [(ngModel)] = "buffer.name"> <br>
+                        Content: <input type="text" [(ngModel)] = "buffer.content"><br>
+                        StartDate: <input type="number" [(ngModel)] = "buffer.startDate"><br>
+                        EndDate: <input type="number" [(ngModel)] = "buffer.endDate"><br>
+                        Priority: <input type="number" [(ngModel)] = "buffer.priority"><br>
+                        Status: <input type="checkbox" [(ngModel)] = "buffer.status"><br>
                     </div>
                     <button *ngIf="showButtonAdd" (click)="addTask()">Add Task</button>
                     <button *ngIf="showButtonUpdate" (click)="updateTask()">Update Task</button>
