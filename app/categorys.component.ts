@@ -22,6 +22,13 @@ import { Category } from './interfaces/category';
                         <input type="text" [(ngModel)] = "buffer.name">
                         <input type="number" [(ngModel)] = "buffer.parentId">
                         <input type="number" [(ngModel)] = "buffer.level">
+                        <br>
+                        Подвязать под категорию:
+                        <div *ngFor="let category of categorys; let i = index;" >
+                        <li *ngIf="category.id != buffer.id"  (click)="setCategory(i)">
+                            {{category.name}}
+                        </li>  
+                        </div>                  
                     </div>
                     <button *ngIf="showButtonAdd" (click)="addCategory()">Add category</button>
                     <button *ngIf="showButtonUpdate" (click)="updateCategory()">Update category</button>
@@ -88,6 +95,10 @@ export class CategorysComponent {
         this.showForm = false;
         this.showButtonUpdate = false;
         this.buffer = Object.assign({}, this.cleanCategory);
+   }
+
+   setCategory(index: number) {
+        this.buffer.parentId = this.categorys[index].id;
    }
 
 }
